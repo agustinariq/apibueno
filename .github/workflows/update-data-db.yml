@@ -1,24 +1,28 @@
 name: Update data in database
 # This workflow is triggered on pushes to master (when a PR is merged) that include changes in the app/data directory.
 #on:
-#	push:
-#		branches:
-#			- master
-#		paths: 
-#			- 'app/data/*'
+#  push:
+#    branches:
+#      - master
+#    paths: 
+#      - 'app/data/*'
 on: [push, pull_request]
-
 jobs:
   build:
     name: Generate data and update db
-    # This job runs on Linux
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-python@v1
+    - uses: actions/checkout@v2
+    - name: Set up Python 3.x
+      uses: actions/setup-python@v1
       with:
-        python-version: '3.8' 
-        architecture: 'x64' 
-      # should install pipenv
-      - run: python my_script.py
-
+        python-version: '3.x' # Semantic version range syntax or exact version of a Python version
+        architecture: 'x64' # Optional - x64 or x86, defaults to x64
+    # You can test your matrix by printing the current Python version
+    - name: Pipenv
+      uses: dschep/install-pipenv-action@v1
+    - name: Display Python version
+      run: |
+        python -c "import sys; print(sys.version)"
+        pipenv install --dev
+        pipenv run export
