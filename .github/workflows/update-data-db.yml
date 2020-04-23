@@ -9,16 +9,16 @@ name: Update data in database
 on: [push, pull_request]
 
 jobs:
-	build:
-		name: Generate data and update db
-		# This job runs on Linux
-		runs-on: ubuntu-latest
-		steps:
-			- uses: actions/checkout@v2
-			- uses: actions/setup-python@v1
-			with:
-				python-version: '3.8' 
-				architecture: 'x64' 
-			# should install pipenv
-			- run: python my_script.py
+  build:
+    name: Generate data and update db
+    # This job runs on Linux
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-python@v1
+      with:
+        python-version: '3.8' 
+        architecture: 'x64' 
+      # should install pipenv
+      - run: python my_script.py
 
