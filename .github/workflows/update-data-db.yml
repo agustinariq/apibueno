@@ -30,3 +30,4 @@ jobs:
         ls
         cd app/data
         ls -l
+        cat time_series_export.csv
