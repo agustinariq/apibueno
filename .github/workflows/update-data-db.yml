@@ -1,12 +1,11 @@
 name: Update data in database
 # This workflow is triggered on pushes to master (when a PR is merged) that include changes in the app/data directory.
-#on:
-#  push:
-#    branches:
-#      - master
-#    paths: 
-#      - 'app/data/*'
-on: [push, pull_request]
+on:
+  push:
+    branches:
+      - master
+    paths: 
+      - 'app/data/*'
 jobs:
   build:
     name: Generate data and update db
@@ -16,14 +15,12 @@ jobs:
     - name: Set up Python 3.x
       uses: actions/setup-python@v1
       with:
-        python-version: '3.x' # Semantic version range syntax or exact version of a Python version
-        architecture: 'x64' # Optional - x64 or x86, defaults to x64
-    # You can test your matrix by printing the current Python version
+        python-version: '3.x'
+        architecture: 'x64'
     - name: Pipenv
       uses: dschep/install-pipenv-action@v1
-    - name: Display Python version
+    - name: Set environment and update data in DB
       run: |
-        python -c "import sys; print(sys.version)"
         pipenv install --dev
         pipenv run export
         cd app/data
