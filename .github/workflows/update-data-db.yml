@@ -30,4 +30,6 @@ jobs:
         sed -i 1d time_series_export.csv
         PGPASSWORD=${{ secrets.DB_PASS }} psql -h ${{ secrets.DB_HOST }} -p 5432 -U ${{ secrets.DB_USER }} ${{ secrets.DB_NAME }}  << EOF
         TRUNCATE TABLE covid;
+        SET datestyle = mdy;
+        \copy "covid" FROM 'time_series_export.csv' CSV;
         EOF
