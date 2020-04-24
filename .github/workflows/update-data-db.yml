@@ -4,8 +4,8 @@ on:
  push:
    branches:
      - master
-#    paths: 
-#      - 'app/data/*'
+    paths: 
+      - 'app/data/*'
 jobs:
   build:
     name: Generate data and update db
