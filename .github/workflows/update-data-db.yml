@@ -26,8 +26,8 @@ jobs:
         python -c "import sys; print(sys.version)"
         pipenv install --dev
         pipenv run export
-        pwd
-        ls
         cd app/data
-        ls -l
-        cat time_series_export.csv
+        sed -i 1d time_series_export.csv
+        psql -h ${{ secrets.DB_HOST }} -p 5432 -U ${{ secrets.DB_USER }} ${{ secrets.DB_NAME }}  << EOF
+        TRUNCATE TABLE covid;
+        EOF
