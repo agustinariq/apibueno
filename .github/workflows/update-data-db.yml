@@ -24,4 +24,5 @@ jobs:
     - name: Display Python version
       run: |
         python -c "import sys; print(sys.version)"
-        pipenv sync --dev
+        pipenv install --dev
+        pipenv run export
