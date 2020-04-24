@@ -26,3 +26,7 @@ jobs:
         python -c "import sys; print(sys.version)"
         pipenv install --dev
         pipenv run export
+        pwd
+        ls
+        cd app/data
+        ls -l
